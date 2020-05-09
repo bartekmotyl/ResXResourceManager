@@ -6,7 +6,8 @@
              xmlns:wpf="urn:TomsToolbox"
              xmlns:properties="clr-namespace:ResXManager.View.Properties"
              xmlns:styles="urn:TomsToolbox.Wpf.Styles"
-             xmlns:infrastructure="urn:ResXManager.Infrastructure">
+             xmlns:infrastructure="urn:ResXManager.Infrastructure"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors">
   <TabControl TabStripPlacement="Left" Loaded="TabControl_Loaded"
               HorizontalContentAlignment="Stretch"
               Style="{DynamicResource {x:Static styles:ResourceKeys.TabControlStyle}}"
@@ -44,7 +45,13 @@
       <DataTemplate DataType="infrastructure:ITranslator">
         <StackPanel Margin="5">
           <DockPanel Margin="8,0">
-            <CheckBox DockPanel.Dock="Left" Content="{x:Static properties:Resources.Enabled}" IsChecked="{Binding IsEnabled}" VerticalAlignment="Center" Style="{DynamicResource {x:Static styles:ResourceKeys.CheckBoxStyle}}" />
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+              <TextBlock VerticalAlignment="Center">
+                <Run Text="{x:Static properties:Resources.Ranking}" />
+                <Run Text=" "/>
+              </TextBlock>
+              <TextBox Width="35" Text="{Binding Ranking, StringFormat=F1}" VerticalAlignment="Center" Style="{DynamicResource {x:Static styles:ResourceKeys.TextBoxStyle}}"/>
+            </StackPanel>
             <Button Tag="{Binding Uri, Mode=OneWay}" DockPanel.Dock="Right" VerticalAlignment="Center">
               <Button.Template>
                 <ControlTemplate>
@@ -71,7 +78,11 @@
                           <Run Text="{Binding Description, Mode=OneWay}" /><Run Text=": " />
                         </TextBlock>
                       </wpf:SharedWidthHeaderedContentControl.Header>
-                      <TextBox Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource {x:Static styles:ResourceKeys.TextBoxStyle}}" />
+                      <PasswordBox Style="{DynamicResource {x:Static styles:ResourceKeys.PasswordBoxStyle}}">
+                        <i:Interaction.Behaviors>
+                          <wpf:PasswordBoxBindingBehavior Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}" />
+                        </i:Interaction.Behaviors>
+                      </PasswordBox>
                     </wpf:SharedWidthHeaderedContentControl>
                   </DataTemplate>
                 </ItemsControl.ItemTemplate>

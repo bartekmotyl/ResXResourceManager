@@ -447,4 +447,13 @@ Your ResXManager team.
   <data name="Translations_Discard" xml:space="preserve">
     <value>Discard</value>
   </data>
+  <data name="Ranking" xml:space="preserve">
+    <value>Ranking:</value>
+  </data>
+  <data name="AllLanguages" xml:space="preserve">
+    <value>All languages</value>
+  </data>
+  <data name="AllComments" xml:space="preserve">
+    <value>All comments</value>
+  </data>
 </root>
